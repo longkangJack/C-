@@ -2,8 +2,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h>
-#define ROW 3
-#define COL 3
+#define ROW 10
+#define COL 10
 void menu();
 void InitBoard(char board[ROW][COL], int row, int col);
 void DisPlayBoard(char board[ROW][COL], int row, int col);

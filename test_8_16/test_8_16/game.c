@@ -32,7 +32,10 @@ void DisPlayBoard(char board[ROW][COL], int row, int col)
 			printf("---|---|---\n");
 		}
 	}
-}void PlayerMove(char board[ROW][COL], int row, int col)
+}
+
+
+void PlayerMove(char board[ROW][COL], int row, int col)
 {
 	int x = 0;
 	int y = 0;
@@ -106,6 +109,8 @@ char checkWin(char board[ROW][COL], int row, int col)
 	}
 	return 'c';
 }
+
+
 int is_full(char board[ROW][COL], int row, int col)
 {
 	int i = 0;

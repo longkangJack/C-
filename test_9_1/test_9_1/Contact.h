@@ -88,3 +88,5 @@ void AddContact(Contact* pcon);
 void ShowContact(Contact* pcon);
 void DelContact(Contact* pcon);
 void SearchContact(Contact* pcon);
+void ModifContact(Contact* pcon);
+void BubbleContact(Contact* pcon);

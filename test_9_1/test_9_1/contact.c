@@ -157,7 +157,46 @@ void SearchContact(Contact* pcon)
 	else
 	{
 		printf("%15s\t%5d\t%5s\t%15s\t%20s\n", "姓名", "年龄", "性别", "电话", "住址");
-		printf("%15s\t%5d\t%5s\t%15s\t%20s\n",pcon->data[pos].name,pcon->data[pos].age,pcon->data[pos].)
+		printf("%15s\t%5d\t%5s\t%15s\t%20s\n", pcon->data[pos].name, pcon->data[pos].age, pcon->data[pos].sex, pcon->data[pos].tele, pcon->data[pos].addr);
 	}
+}
+void ModifContact(Contact* pcon)
+{
+	char name[NAME_MAX] = { 0 };
+	int pos = 0;
+	printf("请输入要修改人的名字");
+	scanf("%s", &name);
+	pos = FindName(pcon, name);
+	if (-1 == pos)
+	{
+		printf("要删除的人不存在>:");
+	}
+	else
+	{
+		printf("请输入名字");
+		scanf("%s", pcon->data[pos].name);
+		printf("请输入年龄");
+		scanf("%d", &pcon->data[pos].age);
+		printf("请输入性别");
+		scanf("%s", pcon->data[pos].sex);
+		printf("请输入电话");
+		scanf("%s", pcon->data[pos].tele);
+		printf("请输入住址");
+		scanf("%s", pcon->data[pos].addr);
+	}
+	printf("修改成功\n");
+}
+int com_by_age(void* e1, void* e2)
+{
+	return ((PeoInfo*)e1)->age - ((PeoInfo*)e2)->age;
+}
+int com_by_name(void* e1, void* e2)
+{
+	return strcmp(((PeoInfo*)e1)->name, ((PeoInfo*)e2)->name)//按照Qsort 进行排序
+}
+void BubbleContact(Contact* pcon)
+{
+	qsort(pcon->data, pcon->sz, sizeof(PeoInfo), com_by_name);
+	printf("排序成功\n");
 
 }

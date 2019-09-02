@@ -10,7 +10,7 @@ void menu()
 
 	printf("**************************************\n");
 	printf("**       1.Add    2.Del             **\n");
-	printf("**       3.Search 4.Modif           **\n")
+	printf("**       3.Search 4.Modif           **\n");
 	printf("**       5.Show   6.Bubble          **\n");
 	printf("**            0.exit                **\n");
 	printf("**************************************\n");
@@ -58,7 +58,6 @@ int main()
 	{
 
 		printf("退出程序");
-
 		return;
 
 	}
@@ -66,73 +65,44 @@ int main()
 	int input = 0;
 
 	//创建通讯录
-
 	Contact con;
-
 	//初始化通讯录
-
 	InitContact(&con);
 
 	do
 
 	{
-
 		menu();
-
 		printf("请选择>");
-
 		scanf("%d", &input);
 
 		switch (input)
-
 		{
-
 		case EXIT:
-
 			printf("退出通讯录");
-
 			break;
-
 		case Add:
-
 			AddContact(&con);
-
 			break;
-
 		case Del:
-
 			DelContact(&con);
-
 			break;
-
 		case search:
 			SearchContact(&con);
 			break;
-
 		case modif:
-
+			ModifContact(&con);
 			break;
-
 		case show:
-
 			ShowContact(&con);
-
 			break;
-
 		case bubble:
-
+			BubbleContact(&con);
 			break;
-
 		default:
-
 			printf("选择错误,请重新选择>");
-
 			break;
-
 		}
-
 	} while (input);
-
 	return 0;
-
 }

@@ -96,3 +96,5 @@ void SearchContact(Contact* pcon);
 void ModifContact(Contact* pcon);
 void BubbleContact(Contact* pcon);
 void DestoryContact(Contact* pcon);
+void saveContact(Contact* pcon);
+void LoadContact(Contact* pcon);

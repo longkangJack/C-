@@ -69,7 +69,6 @@ int main()
 	//初始化通讯录
 	InitContact(&con);
 	do
-
 	{
 		menu();
 		printf("请选择>");
@@ -78,6 +77,7 @@ int main()
 		switch (input)
 		{
 		case EXIT:
+			saveContact(&con);
 			DestoryContact(&con);
 			printf("退出通讯录");
 			break;

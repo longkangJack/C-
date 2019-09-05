@@ -4,21 +4,6 @@
 
 //函数的实现
 
-void InitContact(Contact* pcon)//初始化通讯录
-
-{
-	assert(pcon);
-	pcon->sz = 0;
-
-	//memset(pcon->data, 0, sizeof(pcon->data));//名称 初始化成什么，大小
-	pcon->data = (PeoInfo*)calloc(DEFAULT_SZ, sizeof(PeoInfo));
-	if (pcon->data == NULL)
-	{
-		printf("%s\n", strerror(errno));
-		return;
-	}
-	pcon->capacity = DEFAULT_SZ;
-}
 void CheckCapacity(Contact* pcon)
 {
 	if (pcon->sz == pcon->capacity)
@@ -34,6 +19,66 @@ void CheckCapacity(Contact* pcon)
 		}
 	}
 }
+void InitContact(Contact* pcon)//初始化通讯录
+
+{
+	
+	assert(pcon);
+	pcon->sz = 0;
+	//memset(pcon->data, 0, sizeof(pcon->data));//名称 初始化成什么，大小
+	pcon->data = (PeoInfo*)calloc(DEFAULT_SZ, sizeof(PeoInfo));
+	if (pcon->data == NULL)
+	{
+		printf("%s\n", strerror(errno));
+		return;
+	}
+	pcon->capacity = DEFAULT_SZ;
+	//加载文件
+	LoadContact(pcon);
+}
+
+void LoadContact(Contact* pcon)
+
+{
+
+	PeoInfo tmp = { 0 };
+
+	FILE* pfRead = fopen("contact.txt", "rb");
+
+	if (pfRead == NULL)
+
+	{
+
+		printf("加载信息：打开文件失败\n");
+
+		return;
+
+	}
+
+	//加载信息
+
+	while (fread(&tmp, sizeof(PeoInfo), 1, pfRead))
+
+	{
+
+		CheckCapacity(pcon);
+
+		pcon->data[pcon->sz] = tmp;
+
+		pcon->sz++;
+
+	}
+
+
+
+	fclose(pfRead);
+
+	pfRead = NULL;
+
+}
+
+
+
 void AddContact(Contact* pcon)
 
 {
@@ -227,4 +272,22 @@ void DestoryContact(Contact* pcon)
 	pcon->data = NULL;
 	pcon->capacity = 0;
 	pcon->sz = 0;
+}
+void saveContact(Contact* pcon)
+{
+	int i = 0;
+	FILE* pfwrite = fopen("contact.txt", "wb");
+	if (pfwrite == NULL)
+	{
+		printf("保存信息,打开文件失败\n"); \
+			return;
+	}
+	//保存信息
+	for (i = 0; i < pcon->sz; i++)
+	{
+		fwrite(pcon->data + i, sizeof(PeoInfo), 1, pfwrite);
+	}
+	fclose(pfwrite);
+	pfwrite = NULL;
+
 }
